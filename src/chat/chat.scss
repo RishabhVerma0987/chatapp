@@ -1,10 +1,36 @@
 @import "../globals";
+@mixin scrollbars(
+  $size,
+  $foreground-color,
+  $background-color: mix($foreground-color, white, 50%)
+) {
+  // For Google Chrome
+  &::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $foreground-color;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $background-color;
+    border-radius: 10px;
+  }
+
+  // For Internet Explorer
+  & {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
 .chat {
   width: 400px;
   height: 600px;
   background-color: $greyColor;
-  //border-radius: 10px;
-  padding: 2rem;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -20,14 +46,16 @@
   .chat-message {
     height: 70%;
     overflow-y: auto;
+    @include scrollbars(5px, $backgroundColor, $yellowColor);
     display: flex;
     flex-direction: column;
     width: 100%;
     align-content: flex-start;
     .message {
-      margin-top: 2rem;
       margin-left: 0px;
       max-width: 220px;
+      padding-left: 0.5rem;
+      // padding: 0rem 0rem 0rem 0rem;
       p {
         font-size: 1rem;
         background-color: #343841;
@@ -36,6 +64,7 @@
         font-weight: 300;
         color: #b4b6be;
       }
+
       span {
         font-size: 0.6rem;
         font-weight: 200;
@@ -46,10 +75,12 @@
     .mess-right {
       margin-left: auto;
       margin-right: 0px;
-
       display: flex;
       flex-direction: column;
+      max-width: 220px;
+      padding-right: 0.5rem;
       p {
+        text-align: end;
         border-radius: 10px 0px 10px 10px;
         background-color: $redColor;
         color: white;

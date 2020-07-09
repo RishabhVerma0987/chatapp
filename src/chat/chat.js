@@ -19,6 +19,24 @@ function Chat() {
           <p>Heelo my name is rishabh verma </p>
           <span>Rishabh Verma</span>
         </div>
+        <div className="message">
+          <p>This is rishabh</p>
+          <span>Rishabh Verma</span>
+        </div>
+
+        <div className="message mess-right">
+          <p>Heelo my name is rishabh verma </p>
+          <span>Rishabh Verma</span>
+        </div>
+        <div className="message">
+          <p>This is rishabh</p>
+          <span>Rishabh Verma</span>
+        </div>
+
+        <div className="message mess-right">
+          <p>Heelo my name is rishabh verma </p>
+          <span>Rishabh Verma</span>
+        </div>
       </div>
       <div className="send">
         <input
