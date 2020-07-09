@@ -3,4 +3,13 @@
   width: 100%;
   height: 100vh;
   background-color: $backgroundColor;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .right {
+    flex: 2;
+  }
+  .left {
+    flex: 1;
+  }
 }
