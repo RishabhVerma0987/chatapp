@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import io from "socket.io-client";
+import Chat from "./chat/chat";
+import "./App.scss";
 function App() {
   var socket = io.connect("http://localhost:8000");
 
@@ -22,9 +24,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Hello CHAT</h1>
-      {ans}
-      <button onClick={handleClick}>Click me</button>
+      <Chat />
     </div>
   );
 }
