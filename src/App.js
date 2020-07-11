@@ -19,6 +19,10 @@ function App() {
     });
   }, [socket]);
 
+  useEffect(() => {
+    alert("WORK UNDER CONSTRUCTION !! , THIS DOES NOT REPRESENT FINAL PRODUCT");
+  }, []);
+
   const [ans, setAns] = useState(null);
   const [left, setLeft] = useState(true);
   return (
