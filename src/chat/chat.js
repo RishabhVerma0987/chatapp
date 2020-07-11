@@ -1,42 +1,41 @@
 import React, { useState } from "react";
 import "./chat.scss";
-function Chat() {
+function Chat({ handleClick, data, left }) {
   const [message, setMessage] = useState("");
+  const [name, setName] = useState("");
 
-  console.log(message);
+  const sendData = () => {
+    handleClick({
+      message,
+      name,
+    });
+  };
+
+  console.log("data=", data);
   return (
     <div className="chat">
       <div className="user-name">
-        <h2>Rishabh Verma</h2>
+        <h2>Chat Now</h2>
       </div>
       <div className="chat-message">
-        <div className="message">
-          <p>This is rishabh</p>
-          <span>Rishabh Verma</span>
-        </div>
-
-        <div className="message mess-right">
-          <p>Heelo my name is rishabh verma </p>
-          <span>Rishabh Verma</span>
-        </div>
-        <div className="message">
-          <p>This is rishabh</p>
-          <span>Rishabh Verma</span>
-        </div>
-
-        <div className="message mess-right">
-          <p>Heelo my name is rishabh verma </p>
-          <span>Rishabh Verma</span>
-        </div>
-        <div className="message">
-          <p>This is rishabh</p>
-          <span>Rishabh Verma</span>
-        </div>
-
-        <div className="message mess-right">
-          <p>Heelo my name is rishabh verma </p>
-          <span>Rishabh Verma</span>
-        </div>
+        {left ? (
+          <div className="message">
+            <p>{data?.message}</p>
+            <span>{data?.name}</span>
+          </div>
+        ) : (
+          <div className="message mess-right">
+            <p>{data?.message} </p>
+            <span>{data?.name}</span>
+          </div>
+        )}
+      </div>
+      <div className="send name">
+        <input
+          placeholder="name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        ></input>
       </div>
       <div className="send">
         <input
@@ -44,7 +43,7 @@ function Chat() {
           value={message}
           onChange={(e) => setMessage(e.target.value)}
         ></input>
-        <button>Send</button>
+        <button onClick={sendData}>Send</button>
       </div>
     </div>
   );
