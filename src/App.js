@@ -4,7 +4,8 @@ import Process from "./process/process";
 import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./home/home";
-
+import io from "socket.io-client";
+const socket = io("http://localhost:8000");
 function Appmain(props) {
   return (
     <React.Fragment>
@@ -12,6 +13,7 @@ function Appmain(props) {
         <Chat
           username={props.match.params.username}
           roomname={props.match.params.roomname}
+          socket={socket}
         />
       </div>
       <div className="left">
@@ -26,7 +28,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/" exact>
-            <Home />
+            <Home socket={socket} />
           </Route>
           <Route path="/chat/:roomname/:username" component={Appmain} />
         </Switch>

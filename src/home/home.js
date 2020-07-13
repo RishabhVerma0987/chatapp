@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import "./home.scss";
-import io from "socket.io-client";
 import { Link } from "react-router-dom";
-const socket = io("http://localhost:8000");
-function Homepage() {
+
+function Homepage({ socket }) {
   const [username, setusername] = useState("");
   const [roomname, setroomname] = useState("");
 
