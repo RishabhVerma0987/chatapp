@@ -1,19 +1,37 @@
 import React from "react";
-// import io from "socket.io-client";
 import Chat from "./chat/chat";
 import Process from "./process/process";
 import "./App.scss";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./home/home";
 
-function App() {
+function Appmain(props) {
   return (
-    <div className="App">
+    <React.Fragment>
       <div className="right">
-        <Chat />
+        <Chat
+          username={props.match.params.username}
+          roomname={props.match.params.roomname}
+        />
       </div>
       <div className="left">
         <Process />
       </div>
-    </div>
+    </React.Fragment>
+  );
+}
+function App() {
+  return (
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/chat/:roomname/:username" component={Appmain} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

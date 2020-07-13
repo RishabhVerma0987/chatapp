@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import "./chat.scss";
-function Chat() {
+function Chat({ username, roomname }) {
   const [text, setText] = useState("");
 
   const sendData = () => {};
 
+  console.log(username, roomname);
   return (
     <div className="chat">
       <div className="user-name">
