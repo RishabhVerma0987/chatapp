@@ -5,7 +5,7 @@ import "./App.scss";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./home/home";
 import io from "socket.io-client";
-const socket = io("http://localhost:8000");
+const socket = io("https://chatapprishabh098.azurewebsites.net");
 function Appmain(props) {
   return (
     <React.Fragment>
