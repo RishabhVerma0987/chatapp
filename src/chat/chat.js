@@ -6,28 +6,28 @@ function Chat({ username, roomname, socket }) {
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
-    socket.on("message", (data) => {
-      //decypt
-      const ans = DoDecrypt(data.text, data.username);
-      console.log(ans);
-      let temp = messages;
-      temp.push({
-        userId: data.userId,
-        username: data.username,
-        text: ans,
-      });
-      setMessages([...temp]);
-    });
+    // socket.on("message", (data) => {
+    //   //decypt
+    //   const ans = DoDecrypt(data.text, data.username);
+    //   console.log(ans);
+    //   let temp = messages;
+    //   temp.push({
+    //     userId: data.userId,
+    //     username: data.username,
+    //     text: ans,
+    //   });
+    //   setMessages([...temp]);
+    // });
   }, [socket]);
 
   const sendData = () => {
-    if (text !== "") {
-      //encrypt here
-      const ans = DoEncrypt(text);
-      console.log("encyoted=", ans);
-      socket.emit("chat", ans);
-      setText("");
-    }
+    // if (text !== "") {
+    //   //encrypt here
+    //   const ans = DoEncrypt(text);
+    //   console.log("encyoted=", ans);
+    //   socket.emit("chat", ans);
+    //   setText("");
+    // }
   };
 
   console.log(messages, "mess");
