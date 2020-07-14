@@ -1,9 +1,21 @@
 import React, { useState, useEffect } from "react";
 import "./chat.scss";
 import { DoDecrypt, DoEncrypt } from "../aes.js";
+import { useSelector, useDispatch } from "react-redux";
+import { process } from "../store/action/index";
+
 function Chat({ username, roomname, socket }) {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
+
+  const dispatch = useDispatch();
+  const ans = useSelector((state) => state.ProcessReducer);
+
+  console.log(ans);
+
+  useEffect(() => {
+    dispatch(process(true, "some text", "1312394227"));
+  }, []);
 
   useEffect(() => {
     // socket.on("message", (data) => {
