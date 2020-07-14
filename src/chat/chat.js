@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./chat.scss";
 import { DoDecrypt, DoEncrypt } from "../aes.js";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { process } from "../store/action/index";
 
 function Chat({ username, roomname, socket }) {
@@ -9,37 +9,34 @@ function Chat({ username, roomname, socket }) {
   const [messages, setMessages] = useState([]);
 
   const dispatch = useDispatch();
-  const ans = useSelector((state) => state.ProcessReducer);
 
-  console.log(ans);
-
-  useEffect(() => {
-    dispatch(process(true, "some text", "1312394227"));
-  }, []);
+  const dispatchProcess = (encrypt, msg, cipher) => {
+    dispatch(process(encrypt, msg, cipher));
+  };
 
   useEffect(() => {
-    // socket.on("message", (data) => {
-    //   //decypt
-    //   const ans = DoDecrypt(data.text, data.username);
-    //   console.log(ans);
-    //   let temp = messages;
-    //   temp.push({
-    //     userId: data.userId,
-    //     username: data.username,
-    //     text: ans,
-    //   });
-    //   setMessages([...temp]);
-    // });
+    socket.on("message", (data) => {
+      //decypt
+      const ans = DoDecrypt(data.text, data.username);
+      dispatchProcess(false, ans, data.text);
+      console.log(ans);
+      let temp = messages;
+      temp.push({
+        userId: data.userId,
+        username: data.username,
+        text: ans,
+      });
+      setMessages([...temp]);
+    });
   }, [socket]);
 
   const sendData = () => {
-    // if (text !== "") {
-    //   //encrypt here
-    //   const ans = DoEncrypt(text);
-    //   console.log("encyoted=", ans);
-    //   socket.emit("chat", ans);
-    //   setText("");
-    // }
+    if (text !== "") {
+      //encrypt here
+      const ans = DoEncrypt(text);
+      socket.emit("chat", ans);
+      setText("");
+    }
   };
 
   console.log(messages, "mess");
@@ -47,7 +44,9 @@ function Chat({ username, roomname, socket }) {
   return (
     <div className="chat">
       <div className="user-name">
-        <h2>Chat Now</h2>
+        <h2>
+          {username} <span style={{ fontSize: "0.7rem" }}>in {roomname}</span>
+        </h2>
       </div>
       <div className="chat-message">
         {messages.map((i) => {
