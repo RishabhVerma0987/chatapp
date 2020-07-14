@@ -1,7 +1,7 @@
 @import "../globals";
 .process {
   width: 500px;
-  height: 550px;
+  min-height: 550px;
   margin-right: 10rem;
   display: flex;
   flex-direction: column;
@@ -26,8 +26,11 @@
       margin-top: 0.5rem;
       background-color: rgba(0, 0, 0, 0.4);
       padding: 1.2rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
       border-radius: 5px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
   .crypt {
@@ -40,7 +43,7 @@
       margin-top: 0.5rem;
       background-color: rgba(0, 0, 0, 0.4);
       padding: 1.2rem;
-      font-size: 1.2rem;
+      font-size: 1rem;
       border-radius: 5px;
     }
   }

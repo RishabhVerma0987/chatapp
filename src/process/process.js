@@ -8,8 +8,6 @@ function Process() {
 
   const state = useSelector((state) => state.ProcessReducer);
 
-  console.log("satte", state);
-
   const defaultOptions = {
     loop: true,
     autoplay: true,

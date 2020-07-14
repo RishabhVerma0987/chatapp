@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./chat.scss";
 import { DoDecrypt, DoEncrypt } from "../aes.js";
 import { useDispatch } from "react-redux";
@@ -38,6 +38,13 @@ function Chat({ username, roomname, socket }) {
       setText("");
     }
   };
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(scrollToBottom, [messages]);
 
   console.log(messages, "mess");
 
@@ -66,6 +73,7 @@ function Chat({ username, roomname, socket }) {
             );
           }
         })}
+        <div ref={messagesEndRef} />
       </div>
       <div className="send">
         <input

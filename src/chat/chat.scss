@@ -51,11 +51,12 @@
     flex-direction: column;
     width: 100%;
     align-content: flex-start;
+
     .message {
       margin-left: 0px;
       max-width: 220px;
       padding-left: 0.5rem;
-      // padding: 0rem 0rem 0rem 0rem;
+
       p {
         font-size: 1rem;
         background-color: #343841;
