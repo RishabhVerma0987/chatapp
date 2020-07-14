@@ -1,25 +1,36 @@
 import React, { useState, useEffect } from "react";
 import "./chat.scss";
+import { DoDecrypt, DoEncrypt } from "../aes.js";
 function Chat({ username, roomname, socket }) {
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
     socket.on("message", (data) => {
+      //decypt
+      const ans = DoDecrypt(data.text, data.username);
+      console.log(ans);
       let temp = messages;
-      temp.push(data);
+      temp.push({
+        userId: data.userId,
+        username: data.username,
+        text: ans,
+      });
       setMessages([...temp]);
     });
-  }, []);
+  }, [socket]);
 
   const sendData = () => {
     if (text !== "") {
-      socket.emit("chat", text);
+      //encrypt here
+      const ans = DoEncrypt(text);
+      console.log("encyoted=", ans);
+      socket.emit("chat", ans);
       setText("");
     }
   };
 
-  console.log(messages);
+  console.log(messages, "mess");
 
   return (
     <div className="chat">
